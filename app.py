@@ -45,12 +45,11 @@ def handle_message_events(body, say, logger):
 
     try:
         response = requests.post(
-            f"{NANOBOT_URL}/api/chat",
+            f"{NANOBOT_URL}/webhook",
             json={
-                "message": message,
+                "content": message,
                 "channel": "slack",
                 "chat_id": channel,
-                "user_id": user_id,
             },
             timeout=30,
         )
@@ -82,12 +81,11 @@ def nanobot_command(ack, say, body, command, logger, client):
 
     try:
         response = requests.post(
-            f"{NANOBOT_URL}/api/chat",
+            f"{NANOBOT_URL}/webhook",
             json={
-                "message": text,
+                "content": text,
                 "channel": "slack",
                 "chat_id": channel_id,
-                "user_id": user_id,
             },
             timeout=30,
         )
